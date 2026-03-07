@@ -225,13 +225,12 @@ body {
 
 .input-field {
   width: 100%;
-  padding: 15px 16px;
-  border: 1.5px solid #d9d9d9;
-  border-radius: 14px;
-  font-size: 15px;
-  outline: none;
-  background: #fff;
-  color: #111;            
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background-color: white;   /* make boxes white */
+  color: black;              /* text typed will be black */
+  margin-bottom: 16px;
 }
 
 .input-field:focus {
@@ -335,14 +334,10 @@ body {
 .login-link {
   font-size: 13px;
   margin-bottom: 10px;
-  color: black;   /* makes "Already have an account?" black */
+  color: black;   
 }
 
-.login-link {
-  font-size: 13px;
-  margin-bottom: 10px;
-  color: black;   /* makes "Already have an account?" black */
-}
+
 
 .login-link span {
   font-weight: 700;
