@@ -16,7 +16,8 @@
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "plaid": "^41.4.0"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
