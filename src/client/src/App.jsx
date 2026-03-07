@@ -4,6 +4,8 @@ import Signup from "./pages/SignUp";
 import CharacterCustomization from "./pages/CharacterCustomization";
 import Goals from "./pages/Goals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CustomizationReview from "./pages/CustomizationReview";
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         <Route path="/customize" element={<CharacterCustomization />} />
         <Route path="/goals" element={<Goals />} />
 
+        <Route path="/customize/review" element={<CustomizationReview />} />      
       </Routes>
     </BrowserRouter>
   );

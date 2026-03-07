@@ -19,3 +19,8 @@
 .goals-next-btn {
   margin-top: 8px;
 }
+
+.goals-content .login-title {
+  font-size: 26px;
+  text-align: left;
+}

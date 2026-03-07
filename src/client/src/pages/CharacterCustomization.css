@@ -33,3 +33,41 @@
   margin: 0 0 16px;
   line-height: 1.2;
 }
+
+.finish-customization-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 12px;
+  background: #12c85a;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.review-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.review-btn {
+  background-color: #12c85a;
+  color: white;
+  border: none;
+  padding: 17px 27px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 200px;
+  font-weight: 600;
+}
+
+.review-btn:hover {
+  background-color: #0fa34a;
+}
+
