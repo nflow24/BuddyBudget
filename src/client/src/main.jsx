@@ -6,7 +6,7 @@ import Goals from './Goals.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
-    {/* <Goals /> */}
+    {/* <App /> */}
+    <Goals />
   </StrictMode>,
 )
