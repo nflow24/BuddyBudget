@@ -15,6 +15,28 @@
   z-index: 1;
 }
 
+.character-pants {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 120px;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.character-shirt {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 120px;
+  object-fit: contain;
+  z-index: 3;
+  pointer-events: none;
+}
+
 .character-hair {
   position: absolute;
   top: 0px;
@@ -23,6 +45,26 @@
   max-width: 110px;
   max-height: 120px;
   object-fit: contain;
-  z-index: 2;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.character-shoes {
+ position: absolute;
+ left: 50%;
+ transform: translateX(-50%);
+ object-fit: contain;
+ z-index: 3;
+ pointer-events: none;
+}
+
+.character-face {
+  position: absolute;
+  top: 72px;          
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;        
+  object-fit: contain;
+  z-index: 3;
   pointer-events: none;
 }
