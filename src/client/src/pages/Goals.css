@@ -1,0 +1,21 @@
+/* Goals page uses Login layout (green top bar + main-content). Only goals-specific tweaks here. */
+
+.goals-content .form-group {
+  text-align: left;
+}
+
+.goals-label {
+  display: block;
+  font-size: 14px;
+  color: #111;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.goals-currency-input {
+  text-align: left;
+}
+
+.goals-next-btn {
+  margin-top: 8px;
+}
