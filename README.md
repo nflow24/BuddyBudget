@@ -17,7 +17,7 @@ App description goes here
 
 1. Clone the repository:
    ```bash
-   git clone (https://github.com/nflow24/BuddyBudget.git)
+   git clone https://github.com/nflow24/BuddyBudget.git
    cd BuddyBudget
    ```
 3. Install frontend dependencies:
