@@ -1,14 +1,11 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import buddyLogo from "./assets/logo.png";
 import CharacterCustomization from "./pages/CharacterCustomization";
+import { useNavigate } from "react-router-dom";
 
-function App() {
-  const [showCustomization, setShowCustomization] = useState(false);
-
-  if (showCustomization) {
-    return <CharacterCustomization />;
-  }
+function Home() {
+  const navigate = useNavigate();
 
   return (
     <div className="app">
@@ -36,9 +33,9 @@ function App() {
             <span className="budget-text">Budget</span>
           </h1>
 
-          <button 
+          <button
             className="get-started-btn"
-            onClick={() => setShowCustomization(true)}
+            onClick={() => navigate("/customize")}
           >
             Get Started
           </button>
@@ -49,6 +46,17 @@ function App() {
         </div>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/customize" element={<CharacterCustomization />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

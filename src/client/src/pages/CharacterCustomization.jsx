@@ -18,8 +18,8 @@ import Hair6 from '../assets/character/hair6.png';
 import Hair7 from '../assets/character/hair7.png';
 
 const skinToneOptions = [
-  { value: 'pale', color: '#FDF1E3', asset: PaleSkin, label: 'Pale Skin' },
-  { value: 'light', color: '#F5D5B5', asset: LightSkin, label: 'Light Skin' },
+  { value: 'light', color: '#FDF1E3', asset: LightSkin, label: 'Light Skin' },
+  { value: 'pale', color: '#F5D5B5', asset: PaleSkin, label: 'Pale Skin' },
   { value: 'tan', color: '#E8B48A', asset: TanSkin, label: 'Tan Skin' },
   { value: 'dark', color: '#8B5E3C', asset: DarkSkin, label: 'Dark Skin' },
 ];
@@ -31,7 +31,7 @@ const hairStyleOptions = [
   { value: 'hair4', previewImg: Hair4, asset: Hair4, label: 'Hair Style 4', top: 30, width: 100 },
   { value: 'hair5', previewImg: Hair5, asset: Hair5, label: 'Hair Style 5', top: 25, width: 95 },
   { value: 'hair6', previewImg: Hair6, asset: Hair6, label: 'Hair Style 6', top: 35, width: 85 },
-  { value: 'hair7', previewImg: Hair7, asset: Hair7, label: 'Hair Style 7', top: 40, width: 110 },
+  { value: 'hair7', previewImg: Hair7, asset: Hair7, label: 'Hair Style 7', top: 35, width: 110 },
 ];
 
 const CharacterCustomization = () => {
