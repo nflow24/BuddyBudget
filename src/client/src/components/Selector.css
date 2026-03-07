@@ -1,0 +1,72 @@
+.selector-group {
+  margin-bottom: 20px;
+}
+
+.selector-label {
+  display: inline-block;
+  border: 1.5px solid #333;
+  border-radius: 20px;
+  padding: 4px 16px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  background: white;
+}
+
+.selector-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Skin tone color circles */
+.color-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2.5px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+}
+
+.color-btn.selected {
+  border-color: #333;
+}
+
+/* Hair style image thumbnails */
+.image-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: transparent;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border-color 0.2s, background-color 0.2s, transform 0.15s;
+}
+
+.image-btn:hover {
+  transform: scale(1.05);
+}
+
+.image-btn.selected {
+  border-color: #333;
+  background-color: #f0f0f0;
+}
+
+.image-btn img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+}

@@ -28,12 +28,12 @@ function Home() {
             <span className="budget-text">Budget</span>
           </h1>
 
-            <button
+          <button
             className="get-started-btn"
             onClick={() => navigate("/signup")}
-            >
+          >
             Get Started
-            </button>
+          </button>
 
           <p className="signin-text">
             Have an account?{" "}

@@ -49,7 +49,7 @@ function SignUp() {
             className="input-field"
           />
 
-          <button className="signup-btn">
+          <button className="signup-btn" onClick={() => navigate("/login")}>
             →
           </button>
 

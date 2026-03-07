@@ -36,12 +36,12 @@ function Login() {
 
           <p className="forgot-password">Forgot Password?</p>
 
-          <button className="login-btn">Sign In</button>
+          <button className="login-btn" onClick={() => navigate("/customize")}>Log In</button>
 
-            <p className="login-link">
+          <p className="login-link">
             Don't have an account?{" "}
             <span onClick={() => navigate("/signup")}>Sign Up</span>
-            </p>
+          </p>
         </div>
       </div>
     </div>

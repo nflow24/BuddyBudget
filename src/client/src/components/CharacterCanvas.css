@@ -1,0 +1,28 @@
+.character-canvas {
+  position: relative;
+  width: 180px;
+  height: 300px;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.character-body {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.character-hair {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 110px;
+  max-height: 120px;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+}
