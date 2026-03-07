@@ -28,11 +28,14 @@ body {
   box-shadow: none;
 }
 
+
+
 .top-section {
   height: 140px;
   background: #12c85a;
   position: relative;
 }
+
 
 .money {
   position: absolute;
@@ -101,21 +104,23 @@ body {
 }
 
 .buddy-text {
-  font-size: 55px;
+  font-size: 50px;
   font-weight: 900;
   font-style: italic;
   font-family: 'Playfair Display', serif;
   color: black;
 
   position: relative;
-  top: -50px;  
+  top: -20px;  
 }
 
 .budget-text {
-  font-size: 70px;
+  font-size: 80px;
   font-style: italic;
   font-family: 'DM Serif Display', serif;
   color: #12c85a;
+  position: relative;
+  top: -10px;
 }
 
 .money-text {
@@ -173,4 +178,169 @@ body {
   .title {
     font-size: 42px;
   }
+}
+
+.login-top-section {
+  height: 110px;
+}
+
+.back-btn {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: white;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.login-content {
+  padding-top: 10px;
+}
+
+.login-logo {
+  width: min(42vw, 180px);
+}
+
+.login-title {
+  margin: 8px 0 8px;
+  font-size: 30px;
+  font-weight: 800;
+  color: #111;
+}
+
+.login-subtitle {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: #666;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background-color: white;   /* make boxes white */
+  color: black;              /* text typed will be black */
+  margin-bottom: 16px;
+}
+
+.input-field:focus {
+  border-color: #12c85a;
+}
+
+.forgot-password {
+  margin: 4px 0 20px;
+  text-align: right;
+  font-size: 13px;
+  color: #12c85a;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #12c85a;
+  color: black;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.signup-text {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #333;
+  text-align: center;
+}
+
+.signup-text span {
+  color: #12c85a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.signup-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.signup-login-link {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.signup-login-link span {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.signup-logo {
+  width: min(42vw, 180px);
+  margin-bottom: 12px;
+}
+
+.signup-btn {
+  width: 70px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: #12c85a;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: #12c85a;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.signup-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  text-align: center;
+  color: #111;
+}
+
+.login-link {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.login-link {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: black;   
+}
+
+
+
+.login-link span {
+  font-weight: 700;
+  cursor: pointer;
+  color: #12c85a;   
 }
