@@ -111,7 +111,7 @@ body {
   color: black;
 
   position: relative;
-  top: -20px;
+  top: -20px;  
 }
 
 .budget-text {
@@ -228,10 +228,8 @@ body {
   padding: 14px;
   border-radius: 12px;
   border: 1px solid #ccc;
-  background-color: white;
-  /* make boxes white */
-  color: black;
-  /* text typed will be black */
+  background-color: white;   /* make boxes white */
+  color: black;              /* text typed will be black */
   margin-bottom: 16px;
 }
 
@@ -336,7 +334,7 @@ body {
 .login-link {
   font-size: 13px;
   margin-bottom: 10px;
-  color: black;
+  color: black;   
 }
 
 
@@ -344,5 +342,5 @@ body {
 .login-link span {
   font-weight: 700;
   cursor: pointer;
-  color: #12c85a;
+  color: #12c85a;   
 }
