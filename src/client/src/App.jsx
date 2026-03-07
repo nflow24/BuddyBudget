@@ -1,7 +1,7 @@
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
-
+import CharacterCustomization from "./pages/CharacterCustomization";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
