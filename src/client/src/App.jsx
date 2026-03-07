@@ -1,7 +1,15 @@
+import { useState } from "react";
 import "./App.css";
 import buddyLogo from "./assets/logo.png";
+import CharacterCustomization from "./pages/CharacterCustomization";
 
 function App() {
+  const [showCustomization, setShowCustomization] = useState(false);
+
+  if (showCustomization) {
+    return <CharacterCustomization />;
+  }
+
   return (
     <div className="app">
       <div className="phone-container">
@@ -28,7 +36,12 @@ function App() {
             <span className="budget-text">Budget</span>
           </h1>
 
-          <button className="get-started-btn">Get Started</button>
+          <button 
+            className="get-started-btn"
+            onClick={() => setShowCustomization(true)}
+          >
+            Get Started
+          </button>
 
           <p className="signin-text">
             Have an account? <span>Sign In</span>
