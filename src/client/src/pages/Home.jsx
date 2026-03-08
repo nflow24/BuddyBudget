@@ -1,5 +1,6 @@
 import "../App.css";
 import buddyLogo from "../assets/logo.png";
+import moneyImg from "../assets/money.png";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -7,15 +8,15 @@ function Home() {
 
   return (
     <div className="app">
-      <div className="phone-container">
-        <div className="top-section">
-          <div className="money money-1">$</div>
-          <div className="money money-2">$</div>
-          <div className="money money-3">$</div>
-          <div className="money money-4">$</div>
-        </div>
-
-        <div className="main-content">
+      <div className="phone-container home-phone-container">
+        <div className="top-section home-top-section" />
+        <img
+          src={moneyImg}
+          alt=""
+          className="money-overlay"
+          aria-hidden="true"
+        />
+        <div className="main-content home-main-content">
           <h2 className="welcome-text">Welcome to</h2>
 
           <div className="logo-box">

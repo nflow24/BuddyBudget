@@ -81,7 +81,7 @@ function TransactionsDebug() {
     return (
       <div className="app">
         <div className="phone-container">
-          <div className="top-section login-top-section" />
+          <div className="top-section" />
           <div className="main-content login-content debug-content">
             <h1 className="login-title">Transactions Debug</h1>
             <p className="error-text">{error}</p>
@@ -97,7 +97,7 @@ function TransactionsDebug() {
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="top-section login-top-section" />
+        <div className="top-section" />
         <div className="main-content login-content debug-content">
           <h1 className="login-title">Transactions Debug</h1>
           <p className="login-subtitle">

@@ -47,7 +47,7 @@ function MonthlySavings() {
   return (
     <div className="app">
       <div className="phone-container inside-app-shell">
-        <div className="top-section login-top-section" />
+        <div className="top-section" />
 
         <div className="main-content login-content goals-content inside-app-content">
           <h1 className="login-title">Monthly Savings Plan</h1>
