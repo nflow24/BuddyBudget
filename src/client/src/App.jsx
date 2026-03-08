@@ -8,6 +8,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomizationReview from "./pages/CustomizationReview";
 import InsideAppHome from "./pages/InsideAppHome";
 import MonthlySavings from "./pages/MonthlySavings";
+import PieChart from "./pages/PieChart";
+import Friends from "./pages/Friends";
+import Leaderboard from "./pages/Leaderboard";
 import TransactionsDebug from "./pages/TransactionsDebug";
 
 function App() {
@@ -21,6 +24,9 @@ function App() {
         <Route path="/goals" element={<Goals />} />
         <Route path="/customize/review" element={<CustomizationReview />} />
         <Route path="/home" element={<InsideAppHome />} />
+        <Route path="/money" element={<PieChart />} />
+        <Route path="/friends" element={<Friends />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/connect-bank" element={<PlaidConnect />} />
         <Route path="/monthly-savings" element={<MonthlySavings />} />
         <Route path="/me" element={<MonthlySavings />} />
