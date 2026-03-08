@@ -2,6 +2,7 @@ const express = require('express');
 const Goal = require('../models/Goal');
 const auth = require('../middleware/auth');
 const { GOAL_CATEGORIES } = require('../config/categoryMap');
+const { getMonthlyActualsByCategoryAll } = require('../services/healthService');
 
 const router = express.Router();
 
@@ -53,7 +54,19 @@ router.post('/', auth, async (req, res) => {
 router.get('/', auth, async (req, res) => {
     try {
         const month = req.query.month || getCurrentMonth();
-        const goals = await Goal.find({ userId: req.user._id, month }).lean();
+        const userId = req.user._id;
+        const [goals, actualsByCategory] = await Promise.all([
+            Goal.find({ userId, month }).lean(),
+            getMonthlyActualsByCategoryAll(userId, month),
+        ]);
+
+        for (const cat of GOAL_CATEGORIES) {
+            const actual = actualsByCategory[cat] ?? 0;
+            await Goal.updateOne(
+                { userId, month, category: cat },
+                { $set: { currentAmount: actual } }
+            );
+        }
 
         const byCategory = {};
         for (const cat of GOAL_CATEGORIES) {
@@ -61,7 +74,7 @@ router.get('/', auth, async (req, res) => {
             byCategory[cat] = g ? g.targetAmount : 0;
         }
 
-        res.json({ goals: byCategory, month });
+        res.json({ goals: byCategory, actualsByCategory, month });
     } catch (err) {
         console.error('Goals fetch error:', err.message);
         res.status(500).json({ error: 'Failed to fetch goals' });

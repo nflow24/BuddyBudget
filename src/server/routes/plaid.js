@@ -2,9 +2,75 @@ const express = require('express');
 const plaidClient = require('../config/plaid');
 const User = require('../models/User');
 const Transaction = require('../models/Transaction');
+const Goal = require('../models/Goal');
 const auth = require('../middleware/auth');
+const { GOAL_CATEGORIES } = require('../config/categoryMap');
+const { getMonthlyActualsByCategoryAll } = require('../services/healthService');
 
 const router = express.Router();
+
+async function fetchAndSaveTransactions(userId, plaidItems) {
+    const now = new Date();
+    const endDate = now.toISOString().split('T')[0];
+    const startDate = new Date(now);
+    startDate.setDate(startDate.getDate() - 30);
+    const startDateStr = startDate.toISOString().split('T')[0];
+
+    const allTransactions = [];
+
+    for (const item of plaidItems) {
+        try {
+            const response = await plaidClient.transactionsGet({
+                access_token: item.accessToken,
+                start_date: startDateStr,
+                end_date: endDate,
+            });
+            const transactions = response.data.transactions || [];
+
+            for (const t of transactions) {
+                const pfc = t.personal_finance_category || {};
+                const personalFinanceCategory = {
+                    primary: pfc.primary || '',
+                    detailed: pfc.detailed || '',
+                    confidenceLevel: pfc.confidence_level || '',
+                };
+
+                const existing = await Transaction.findOne({
+                    plaidTransactionId: t.transaction_id,
+                });
+                if (!existing) {
+                    await Transaction.create({
+                        userId,
+                        plaidTransactionId: t.transaction_id,
+                        accountId: t.account_id,
+                        name: t.name,
+                        amount: t.amount,
+                        date: new Date(t.date),
+                        category: t.category || [],
+                        personalFinanceCategory,
+                        merchantName: t.merchant_name || '',
+                        pending: t.pending || false,
+                    });
+                }
+                allTransactions.push({
+                    id: t.transaction_id,
+                    name: t.name,
+                    amount: t.amount,
+                    date: t.date,
+                    category: t.category || [],
+                    personalFinanceCategory,
+                    merchantName: t.merchant_name || '',
+                    pending: t.pending || false,
+                });
+            }
+        } catch (itemErr) {
+            console.error('Error fetching transactions for item:', itemErr.message);
+        }
+    }
+
+    allTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return allTransactions;
+}
 
 router.post('/create-link-token', auth, async (req, res) => {
     try {
@@ -44,12 +110,13 @@ router.post('/exchange-token', auth, async (req, res) => {
 
         const user = await User.findById(req.user._id);
         if (!user.plaidItems) user.plaidItems = [];
-        user.plaidItems.push({
-            accessToken: access_token,
-            itemId: item_id,
-            institutionName,
-        });
+        const newItem = { accessToken: access_token, itemId: item_id, institutionName };
+        user.plaidItems.push(newItem);
         await user.save();
+
+        fetchAndSaveTransactions(user._id, [newItem]).catch((err) =>
+            console.error('Background transaction fetch after link:', err.message)
+        );
 
         res.json({
             success: true,
@@ -102,73 +169,48 @@ router.post('/refresh-transactions', auth, async (req, res) => {
     }
 });
 
-router.get('/transactions', auth, async (req, res) => {
+router.post('/sync-transactions', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user._id);
         if (!user.plaidItems || user.plaidItems.length === 0) {
-            return res.json({ transactions: [] });
+            return res.json({ synced: 0 });
         }
-
+        const txns = await fetchAndSaveTransactions(user._id, user.plaidItems);
         const now = new Date();
-        const endDate = now.toISOString().split('T')[0];
-        const startDate = new Date(now);
-        startDate.setDate(startDate.getDate() - 30);
-        const startDateStr = startDate.toISOString().split('T')[0];
+        const month = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+        const actualsByCategory = await getMonthlyActualsByCategoryAll(user._id, month);
+        for (const cat of GOAL_CATEGORIES) {
+            await Goal.updateOne(
+                { userId: user._id, month, category: cat },
+                { $set: { currentAmount: actualsByCategory[cat] ?? 0 } }
+            );
+        }
+        res.json({ synced: txns.length });
+    } catch (err) {
+        console.error('Sync transactions error:', err.message);
+        res.status(500).json({ error: 'Failed to sync transactions' });
+    }
+});
 
-        const allTransactions = [];
+router.get('/transactions', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+        const now = new Date();
+        const month = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
 
-        for (const item of user.plaidItems) {
-            try {
-                const response = await plaidClient.transactionsGet({
-                    access_token: item.accessToken,
-                    start_date: startDateStr,
-                    end_date: endDate,
-                });
-                const transactions = response.data.transactions || [];
-
-                for (const t of transactions) {
-                    const pfc = t.personal_finance_category || {};
-                    const personalFinanceCategory = {
-                        primary: pfc.primary || '',
-                        detailed: pfc.detailed || '',
-                        confidenceLevel: pfc.confidence_level || '',
-                    };
-
-                    const existing = await Transaction.findOne({
-                        plaidTransactionId: t.transaction_id,
-                    });
-                    if (!existing) {
-                        await Transaction.create({
-                            userId: user._id,
-                            plaidTransactionId: t.transaction_id,
-                            accountId: t.account_id,
-                            name: t.name,
-                            amount: t.amount,
-                            date: new Date(t.date),
-                            category: t.category || [],
-                            personalFinanceCategory,
-                            merchantName: t.merchant_name || '',
-                            pending: t.pending || false,
-                        });
-                    }
-                    allTransactions.push({
-                        id: t.transaction_id,
-                        name: t.name,
-                        amount: t.amount,
-                        date: t.date,
-                        category: t.category || [],
-                        personalFinanceCategory,
-                        merchantName: t.merchant_name || '',
-                        pending: t.pending || false,
-                    });
-                }
-            } catch (itemErr) {
-                console.error('Error fetching transactions for item:', itemErr.message);
-            }
+        if (!user.plaidItems || user.plaidItems.length === 0) {
+            const actualsByCategory = await getMonthlyActualsByCategoryAll(user._id, month);
+            return res.json({ transactions: [], actualsByCategory, month });
         }
 
-        allTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
-        res.json({ transactions: allTransactions });
+        const allTransactions = await fetchAndSaveTransactions(user._id, user.plaidItems);
+        const actualsByCategory = await getMonthlyActualsByCategoryAll(user._id, month);
+
+        res.json({
+            transactions: allTransactions,
+            actualsByCategory,
+            month,
+        });
     } catch (err) {
         console.error('Plaid transactions error:', err.message);
         res.status(500).json({ error: 'Failed to fetch transactions' });

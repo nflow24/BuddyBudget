@@ -53,6 +53,44 @@
   font-style: italic;
 }
 
+.debug-category-totals {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.debug-category-totals-title {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+}
+
+.debug-category-totals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.debug-category-total-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.debug-category-label {
+  font-size: 11px;
+  color: #666;
+}
+
+.debug-category-amount {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+}
+
 .debug-refresh-row {
   margin-top: 16px;
 }

@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { GOAL_CATEGORIES } from "../data/goalCategories";
 import "../App.css";
 import "./TransactionsDebug.css";
 
 function TransactionsDebug() {
   const { token, user } = useAuth();
   const [transactions, setTransactions] = useState([]);
+  const [actualsByCategory, setActualsByCategory] = useState({});
+  const [month, setMonth] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [refreshLoading, setRefreshLoading] = useState(false);
@@ -26,14 +29,20 @@ function TransactionsDebug() {
           setError(data.error || "Failed to fetch transactions");
         }
         setTransactions([]);
+        setActualsByCategory({});
+        setMonth(null);
         return;
       }
 
       setTransactions(data.transactions || []);
+      setActualsByCategory(data.actualsByCategory || {});
+      setMonth(data.month || null);
       setError(null);
     } catch (err) {
       setError("Network error. Please try again.");
       setTransactions([]);
+      setActualsByCategory({});
+      setMonth(null);
     } finally {
       setLoading(false);
     }
@@ -109,6 +118,24 @@ function TransactionsDebug() {
           <p className="debug-auth-note">
             One user per browser (JWT in localStorage). Server validates token per request.
           </p>
+
+          {month && Object.keys(actualsByCategory).length > 0 && (
+            <div className="debug-category-totals">
+              <h3 className="debug-category-totals-title">
+                Current month totals ({month})
+              </h3>
+              <div className="debug-category-totals-grid">
+                {GOAL_CATEGORIES.map(({ id, label }) => (
+                  <div key={id} className="debug-category-total-item">
+                    <span className="debug-category-label">{label}</span>
+                    <span className="debug-category-amount">
+                      ${(actualsByCategory[id] ?? 0).toFixed(2)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="debug-refresh-row">
             <button

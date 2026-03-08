@@ -9,16 +9,24 @@ import "./Goals.css";
 function MonthlySavings() {
   const { token } = useAuth();
   const [goals, setGoals] = useState(null);
+  const [actualsByCategory, setActualsByCategory] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!token) {
       setGoals({});
+      setActualsByCategory({});
       setLoading(false);
       return;
     }
-    async function fetchGoals() {
+    async function syncThenFetchGoals() {
+      try {
+        await fetch("/api/plaid/sync-transactions", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } catch { /* ignore sync errors */ }
       try {
         const res = await fetch("/api/goals", {
           headers: { Authorization: `Bearer ${token}` },
@@ -26,6 +34,7 @@ function MonthlySavings() {
         const data = await res.json();
         if (res.ok) {
           setGoals(data.goals || {});
+          setActualsByCategory(data.actualsByCategory || {});
         } else {
           setError(data.error || "Failed to load goals");
         }
@@ -35,7 +44,7 @@ function MonthlySavings() {
         setLoading(false);
       }
     }
-    fetchGoals();
+    syncThenFetchGoals();
   }, [token]);
 
   const formatDisplay = (v) => {
@@ -65,6 +74,13 @@ function MonthlySavings() {
                 <span className="goals-total-value">
                   {formatDisplay(
                     GOAL_CATEGORIES.reduce(
+                      (sum, { id }) => sum + (actualsByCategory?.[id] ?? 0),
+                      0
+                    )
+                  )}{" "}
+                  /{" "}
+                  {formatDisplay(
+                    GOAL_CATEGORIES.reduce(
                       (sum, { id }) => sum + (goals?.[id] ?? 0),
                       0
                     )
@@ -72,21 +88,26 @@ function MonthlySavings() {
                 </span>
               </div>
 
-              {GOAL_CATEGORIES.map(({ id, label }) => (
-                <div key={id} className="form-group">
-                  <label className="goals-label" htmlFor={id}>
-                    {label}
-                  </label>
-                  <input
-                    id={id}
-                    type="text"
-                    className="input-field goals-currency-input"
-                    value={formatDisplay(goals?.[id] ?? 0)}
-                    readOnly
-                    aria-label={label}
-                  />
-                </div>
-              ))}
+              {GOAL_CATEGORIES.map(({ id, label }) => {
+                const goal = goals?.[id] ?? 0;
+                const actual = actualsByCategory?.[id] ?? 0;
+                const displayValue = `${formatDisplay(actual)} / ${formatDisplay(goal)}`;
+                return (
+                  <div key={id} className="form-group">
+                    <label className="goals-label" htmlFor={id}>
+                      {label}
+                    </label>
+                    <input
+                      id={id}
+                      type="text"
+                      className="input-field goals-currency-input"
+                      value={displayValue}
+                      readOnly
+                      aria-label={label}
+                    />
+                  </div>
+                );
+              })}
             </>
           )}
         </div>
