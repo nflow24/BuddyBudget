@@ -56,6 +56,7 @@ function PlaidConnect() {
         if (res.ok) {
           setConnected(true);
           setError(null);
+          setTimeout(() => navigate("/home"), 1500);
         } else {
           setError(data.error || "Failed to connect bank");
         }

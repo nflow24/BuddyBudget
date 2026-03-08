@@ -55,7 +55,7 @@ export function AuthProvider({ children }) {
       localStorage.setItem(TOKEN_KEY, data.token);
       setToken(data.token);
       setUser(data.user);
-      return true;
+      return data.user;
     } catch (err) {
       setError("Network error. Please try again.");
       return false;
@@ -94,6 +94,8 @@ export function AuthProvider({ children }) {
 
   const clearError = () => setError(null);
 
+  const updateUser = (userData) => setUser(userData);
+
   const value = {
     user,
     token,
@@ -103,6 +105,7 @@ export function AuthProvider({ children }) {
     signup,
     logout,
     clearError,
+    updateUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

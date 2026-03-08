@@ -70,14 +70,15 @@ router.get('/me', auth, async (req, res) => {
 
 router.put('/me/character', auth, async (req, res) => {
     try {
-        const { skin, hair, clothes, accessories } = req.body;
+        const { skin, hair, shirt, pants, shoes } = req.body;
 
         const user = await User.findById(req.user._id);
         if (!user.character) user.character = {};
         if (skin !== undefined) user.character.skin = skin;
         if (hair !== undefined) user.character.hair = hair;
-        if (clothes !== undefined) user.character.clothes = clothes;
-        if (accessories !== undefined) user.character.accessories = accessories;
+        if (shirt !== undefined) user.character.shirt = shirt;
+        if (pants !== undefined) user.character.pants = pants;
+        if (shoes !== undefined) user.character.shoes = shoes;
 
         await user.save();
         res.json({ user: user.toPublicJSON() });

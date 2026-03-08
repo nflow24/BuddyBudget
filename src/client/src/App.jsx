@@ -7,6 +7,7 @@ import PlaidConnect from "./pages/PlaidConnect";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomizationReview from "./pages/CustomizationReview";
 import InsideAppHome from "./pages/InsideAppHome";
+import MonthlySavings from "./pages/MonthlySavings";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/customize/review" element={<CustomizationReview />} />
         <Route path="/home" element={<InsideAppHome />} />
         <Route path="/connect-bank" element={<PlaidConnect />} />
+        <Route path="/monthly-savings" element={<MonthlySavings />} />
       </Routes>
     </BrowserRouter>
   );

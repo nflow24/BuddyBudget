@@ -26,8 +26,9 @@ const userSchema = new mongoose.Schema({
         type: {
             skin: { type: String, default: '' },
             hair: { type: String, default: '' },
-            clothes: { type: String, default: '' },
-            accessories: { type: [String], default: [] },
+            shirt: { type: String, default: '' },
+            pants: { type: String, default: '' },
+            shoes: { type: String, default: '' },
         },
         default: () => ({}),
     },
@@ -55,6 +56,7 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
 userSchema.methods.toPublicJSON = function () {
     const obj = this.toObject();
     delete obj.passwordHash;
+    obj.hasConnectedBank = Array.isArray(obj.plaidItems) && obj.plaidItems.length > 0;
     delete obj.plaidItems;
     return obj;
 };
