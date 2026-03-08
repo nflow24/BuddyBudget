@@ -22,7 +22,6 @@
   margin-bottom: 18px;
 }
 
-/* Card UI */
 
 .dashboard-card {
   background: white;
@@ -36,7 +35,6 @@
   text-align: center;
 }
 
-/* Text styles */
 
 .dashboard-stat-title {
   font-weight: 700;
@@ -57,7 +55,6 @@
   margin-top: 8px;
 }
 
-/* Progress bar */
 
 .dashboard-progress-bar {
   width: 100%;
@@ -70,10 +67,51 @@
 
 .dashboard-progress-fill {
   height: 100%;
-  background: #4e8ea7;
+  background: #00b421;
   border-radius: 999px;
 }
 
+.money-highlight {
+  color: #12c85a;
+  font-weight: 700;
+}
+
+
+.friends-card {
+  background: white;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.friends-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 16px;
+}
+
+.friends-list {
+  margin-bottom: 20px;
+}
+
+.friends-list-item {
+  font-size: 16px;
+  color: #111;
+  margin: 4px 0;
+}
+
+.friends-subtitle {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 18px;
+  line-height: 1.2;
+}
+
+.friends-label {
+  display: block;
+  font-size: 15px;
 /* Friends mock */
 .friends-content .friends-section-title {
   font-size: 18px;
@@ -102,6 +140,78 @@
   font-size: 14px;
   color: #111;
   margin-bottom: 8px;
+}
+
+.friends-input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #777;
+  background: white;
+  color: black;
+  margin-bottom: 20px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.friends-button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 0;
+  background: #12c85a;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.friends-message {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #666;
+}
+
+
+.leaderboard-card {
+  background: white;
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.leaderboard-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.leaderboard-rank {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 8px;
+}
+
+.leaderboard-detail {
+  font-size: 14px;
+  color: #222;
+  margin: 4px 0;
+}
+
+.leaderboard-score-circle {
+  min-width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #12c85a;
+  color: white;
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .friends-email-input {
