@@ -8,6 +8,7 @@ import {
   pantsOptionsWithPreview,
   shoeOptionsWithPreview,
 } from '../data/characterOptions';
+import '../App.css';
 import './CharacterCustomization.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -63,8 +64,7 @@ const handleFinishCustomization = () => {
   return (
     <div className="app">
       <div className="phone-container">
-        {/* Green top section */}
-        <div className="cc-top-section"></div>
+        <div className="top-section" />
 
         {/* White card overlapping green */}
         <div className="cc-card">

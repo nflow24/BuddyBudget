@@ -18,7 +18,7 @@ function CustomizationReview() {
     return (
       <div className="app">
         <div className="phone-container">
-          <div className="cc-top-section"></div>
+          <div className="top-section" />
           <div className="cc-card">
             <h1 className="cc-title">No character found</h1>
             <button
@@ -80,7 +80,7 @@ function CustomizationReview() {
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="cc-top-section"></div>
+        <div className="top-section" />
 
         <div className="cc-card review-card">
           <h1 className="cc-title review-title">

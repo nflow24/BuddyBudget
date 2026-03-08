@@ -114,6 +114,8 @@
   font-size: 15px;
 }
 /* Friends mock */
+}
+
 .friends-content .friends-section-title {
   font-size: 18px;
   font-weight: 800;
@@ -157,14 +159,21 @@
 
 .friends-button {
   width: 100%;
-  padding: 14px;
+  padding: 16px;
   border: none;
-  border-radius: 0;
+  border-radius: 14px;
   background: #12c85a;
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
+  color: black;
+  font-weight: 800;
+  font-size: 17px;
   cursor: pointer;
+}
+
+.friends-placeholder {
+  font-size: 15px;
+  color: #999;
+  font-style: italic;
+  margin: 4px 0;
 }
 
 .friends-message {
