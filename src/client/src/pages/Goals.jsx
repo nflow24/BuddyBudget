@@ -92,6 +92,18 @@ function Goals() {
             </div>
           ))}
 
+          <div className="goals-total-area">
+            <span className="goals-total-label">Total Budget</span>
+            <span className="goals-total-value">
+              {formatDisplay(
+                GOAL_CATEGORIES.reduce(
+                  (sum, { id }) => sum + parseAmount(values[id]),
+                  0
+                )
+              )}
+            </span>
+          </div>
+
           <button
             type="button"
             className="login-btn goals-next-btn"

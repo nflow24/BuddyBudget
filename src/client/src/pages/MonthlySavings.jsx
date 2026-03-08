@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { GOAL_CATEGORIES } from "../data/goalCategories";
+import BottomNav from "../BottomNav";
 import "../App.css";
+import "./AppPages.css";
 import "./Goals.css";
 
 function MonthlySavings() {
@@ -44,10 +46,10 @@ function MonthlySavings() {
 
   return (
     <div className="app">
-      <div className="phone-container">
+      <div className="phone-container inside-app-shell">
         <div className="top-section login-top-section" />
 
-        <div className="main-content login-content goals-content">
+        <div className="main-content login-content goals-content inside-app-content">
           <h1 className="login-title">Monthly Savings Plan</h1>
           <p className="login-subtitle">
             Your current budget and spending limits.
@@ -58,6 +60,18 @@ function MonthlySavings() {
 
           {!loading && !error && (
             <>
+              <div className="goals-total-area">
+                <span className="goals-total-label">Total Budget</span>
+                <span className="goals-total-value">
+                  {formatDisplay(
+                    GOAL_CATEGORIES.reduce(
+                      (sum, { id }) => sum + (goals?.[id] ?? 0),
+                      0
+                    )
+                  )}
+                </span>
+              </div>
+
               {GOAL_CATEGORIES.map(({ id, label }) => (
                 <div key={id} className="form-group">
                   <label className="goals-label" htmlFor={id}>
@@ -76,6 +90,8 @@ function MonthlySavings() {
             </>
           )}
         </div>
+
+        <BottomNav />
       </div>
     </div>
   );
