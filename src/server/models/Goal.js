@@ -33,5 +33,6 @@ const goalSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 goalSchema.index({ userId: 1, month: 1 });
+goalSchema.index({ userId: 1, month: 1, category: 1 }, { unique: true });
 
 module.exports = mongoose.model('Goal', goalSchema);
