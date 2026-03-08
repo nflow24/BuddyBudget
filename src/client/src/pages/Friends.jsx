@@ -1,33 +1,85 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
 import "./AppPages.css";
 import BottomNav from "../BottomNav";
+import { useAuth } from "../context/AuthContext";
 
 function Friends() {
+  const { token } = useAuth();
   const [email, setEmail] = useState("");
   const [friends, setFriends] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState(""); // "success" | "error"
 
-  const handleInvite = () => {
+  useEffect(() => {
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    async function fetchFriends() {
+      try {
+        const res = await fetch("/api/friends", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (res.ok) {
+          setFriends(data.friends || []);
+        }
+      } catch {
+        setMessage("Failed to load friends");
+        setMessageType("error");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchFriends();
+  }, [token]);
+
+  const handleInvite = async () => {
     if (!email.trim()) {
       setMessage("Please enter an email.");
+      setMessageType("error");
       return;
     }
 
-    const namePart = email.split("@")[0]?.trim();
-    const formattedName =
-      namePart.length > 0
-        ? namePart.charAt(0).toUpperCase() + namePart.slice(1)
-        : "New Friend";
-
-    if (friends.some((friend) => friend.toLowerCase() === formattedName.toLowerCase())) {
-      setMessage("Friend already added.");
+    if (!token) {
+      setMessage("Please sign in to add friends.");
+      setMessageType("error");
       return;
     }
 
-    setFriends((prev) => [...prev, formattedName]);
-    setMessage(`Invitation sent to ${email}`);
-    setEmail("");
+    setAdding(true);
+    setMessage("");
+    setMessageType("");
+
+    try {
+      const res = await fetch("/api/friends/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        setFriends((prev) => [...prev, data.friend]);
+        setMessage(`Friend added! ${data.friend.name} is now on your list.`);
+        setMessageType("success");
+        setEmail("");
+      } else {
+        setMessage(data.error || "Failed to add friend");
+        setMessageType("error");
+      }
+    } catch {
+      setMessage("Network error. Please try again.");
+      setMessageType("error");
+    } finally {
+      setAdding(false);
+    }
   };
 
   return (
@@ -40,12 +92,14 @@ function Friends() {
             <h1 className="friends-title">Your Friends:</h1>
 
             <div className="friends-list">
-              {friends.length === 0 ? (
+              {loading ? (
+                <p className="friends-placeholder">Loading...</p>
+              ) : friends.length === 0 ? (
                 <p className="friends-placeholder">Make your first friend!</p>
               ) : (
                 friends.map((friend, index) => (
-                  <p key={friend} className="friends-list-item">
-                    {index + 1}. {friend}
+                  <p key={friend._id} className="friends-list-item">
+                    {index + 1}. {friend.name}
                   </p>
                 ))
               )}
@@ -58,17 +112,30 @@ function Friends() {
             <input
               id="friend-email"
               type="email"
-              placeholder="Enter their name"
+              placeholder="Enter their email"
               className="input-field"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={adding}
             />
 
-            <button className="friends-button" onClick={handleInvite}>
-              Send Invitation
+            <button
+              className="friends-button"
+              onClick={handleInvite}
+              disabled={adding}
+            >
+              {adding ? "Adding..." : "Add Friend"}
             </button>
 
-            {message && <p className="friends-message">{message}</p>}
+            {message && (
+              <p
+                className={`friends-message ${
+                  messageType === "error" ? "friends-message-error" : ""
+                }`}
+              >
+                {message}
+              </p>
+            )}
           </div>
         </div>
 

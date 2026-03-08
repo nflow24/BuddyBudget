@@ -7,6 +7,8 @@ const authRoutes = require('./routes/auth');
 const plaidRoutes = require('./routes/plaid');
 const goalRoutes = require('./routes/goals');
 const healthRoutes = require('./routes/health');
+const friendRoutes = require('./routes/friends');
+const leaderboardRoutes = require('./routes/leaderboard');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -22,6 +24,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/plaid', plaidRoutes);
 app.use('/api/goals', goalRoutes);
 app.use('/api/health', healthRoutes);
+app.use('/api/friends', friendRoutes);
+app.use('/api/leaderboard', leaderboardRoutes);
 
 connectDB().then(() => {
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
