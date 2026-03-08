@@ -51,7 +51,7 @@ function InsideAppHome() {
 
         <div className="inside-app-content dashboard-content">
 
-          <h1 className="dashboard-title">Home</h1>
+          <h1 className="dashboard-title">{user?.name ? `${user.name}'s buddy` : "buddy"}</h1>
 
           <div className="dashboard-card dashboard-character-card">
 
@@ -60,7 +60,7 @@ function InsideAppHome() {
             <img src={overlayImage} alt="Character cleanliness overlay" className="character-overlay" />
           </div>
 
-            <p className="dashboard-stat-title">Character Health</p>
+            <p className="dashboard-stat-title">Buddy's Health</p>
 
             <div className="dashboard-progress-bar">
               <div

@@ -138,11 +138,11 @@ function Money() {
   return (
     <div className="app">
       <div className="phone-container inside-app-shell">
-        <div className="cc-top-section"></div>
+        <div className="top-section"></div>
 
         <div className="cc-card">
           <div className="inside-app-content dashboard-content">
-            <h1 className="dashboard-title">Money</h1>
+            <h1 className="dashboard-title">Monthly Spending</h1>
 
             {loading && <p className="goals-loading">Loading…</p>}
             {error && <p className="error-text">{error}</p>}
@@ -160,7 +160,7 @@ function Money() {
               <div className="dashboard-progress-bar">
                 <div
                   className="dashboard-progress-fill"
-                  style={{ width: `${displayHealth}%` }}
+                  style={{ width: `${displayHealth}%`}}
                 />
               </div>
 

@@ -15,6 +15,10 @@
   text-align: left;
 }
 
+.inside-app-content.dashboard-content {
+  overflow: hidden;
+}
+
 .dashboard-title {
   font-size: 22px;
   font-weight: 800;
