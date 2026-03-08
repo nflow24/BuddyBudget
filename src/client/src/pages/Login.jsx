@@ -34,7 +34,7 @@ function Login() {
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="top-section login-top-section">
+        <div className="top-section">
           <button className="back-btn" onClick={() => navigate("/")}>
             ×
           </button>

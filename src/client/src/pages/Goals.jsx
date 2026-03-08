@@ -65,7 +65,7 @@ function Goals() {
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="top-section login-top-section" />
+        <div className="top-section" />
 
         <div className="main-content login-content goals-content">
           <h1 className="login-title">Step 2: Set Your Monthly Goals</h1>

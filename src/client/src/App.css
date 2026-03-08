@@ -31,7 +31,7 @@ body {
 
 
 .top-section {
-  height: 140px;
+  height: 110px;
   background: #12c85a;
   position: relative;
 }
@@ -167,10 +167,6 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   }
 
-  .top-section {
-    height: 150px;
-  }
-
   .logo-image {
     width: 220px;
   }
@@ -178,10 +174,6 @@ body {
   .title {
     font-size: 42px;
   }
-}
-
-.login-top-section {
-  height: 110px;
 }
 
 .back-btn {
