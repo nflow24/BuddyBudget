@@ -38,6 +38,6 @@ const transactionSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 transactionSchema.index({ userId: 1, date: -1 });
-transactionSchema.index({ plaidTransactionId: 1 }, { unique: true });
+// plaidTransactionId index is already created by unique: true on the field above
 
 module.exports = mongoose.model('Transaction', transactionSchema);

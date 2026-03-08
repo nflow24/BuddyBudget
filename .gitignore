@@ -1,8 +1,12 @@
 # Dependencies
 node_modules/
 
-# Environment variables
+# Environment variables (never commit secrets)
 .env
+.env.local
+.env.*.local
+**/.env
+src/server/.env
 
 # Build output
 dist/

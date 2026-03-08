@@ -23,10 +23,13 @@ const userSchema = new mongoose.Schema({
         type: Date,
     },
     character: {
-        skin: { type: String, default: '' },
-        hair: { type: String, default: '' },
-        clothes: { type: String, default: '' },
-        accessories: [String],
+        type: {
+            skin: { type: String, default: '' },
+            hair: { type: String, default: '' },
+            clothes: { type: String, default: '' },
+            accessories: { type: [String], default: [] },
+        },
+        default: () => ({}),
     },
     plaidItems: [{
         accessToken: String,
