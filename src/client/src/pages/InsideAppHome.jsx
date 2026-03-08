@@ -5,21 +5,15 @@ import BottomNav from "../BottomNav";
 import CharacterCanvas from "../components/CharacterCanvas";
 import { useAuth } from "../context/AuthContext";
 import { getCharacterCanvasProps } from "../data/characterOptions";
-import { useAppData } from "../context/AppDataContext";
 import cleanOverlay from "../assets/hygiene/clean.png";
 import stinkyOverlay from "../assets/hygiene/stinky.png";
 
 function InsideAppHome() {
   const { user, token } = useAuth();
   const [spendingHealth, setSpendingHealth] = useState(null);
-  const { userData } = useAppData();
-  const totalSpent = Object.values(userData.spending || {}).reduce(
-  (sum, amount) => sum + amount, 0);
 
-  const totalBudget = userData.goals?.budget ?? 0;
-
-  const isOverBudget = totalSpent > totalBudget;
-
+  const displayHealth = spendingHealth ?? 100;
+  const isOverBudget = displayHealth < 70;
   const overlayImage = isOverBudget ? stinkyOverlay : cleanOverlay;
 
   useEffect(() => {
@@ -49,7 +43,6 @@ function InsideAppHome() {
   }, [token]);
 
   const characterProps = getCharacterCanvasProps(user?.character);
-  const displayHealth = spendingHealth ?? 100;
 
   return (
     <div className="app">
