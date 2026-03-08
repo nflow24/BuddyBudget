@@ -81,7 +81,7 @@ function PlaidConnect() {
       <div className="phone-container">
         <div className="top-section" />
 
-        <div className="main-content plaid-content">
+        <div className="cc-card">
           <h1 className="plaid-title">Step 3: Connect to your bank</h1>
           <p className="plaid-subtitle">
             Securely link your bank account to track spending and reach your goals.

@@ -82,7 +82,7 @@ function CustomizationReview() {
       <div className="phone-container">
         <div className="top-section" />
 
-        <div className="cc-card review-card">
+        <div className="cc-card">
           <h1 className="cc-title review-title">
             Looks great!
             <br />

@@ -9,7 +9,7 @@ function Home() {
   return (
     <div className="app">
       <div className="phone-container home-phone-container">
-        <div className="top-section home-top-section" />
+        <div className="top-section" />
         <img
           src={moneyImg}
           alt=""

@@ -9,7 +9,7 @@ function InsideAppLayout() {
       <div className="phone-container inside-app-shell">
         <div className="top-section"></div>
 
-        <div className="inside-app-content">
+        <div className="cc-card">
           <Outlet />
         </div>
 

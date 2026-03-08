@@ -87,7 +87,7 @@ function Friends() {
       <div className="phone-container inside-app-shell">
         <div className="top-section"></div>
 
-        <div className="inside-app-content dashboard-content">
+        <div className="cc-card">
           <div className="friends-card">
             <h1 className="friends-title">Your Friends:</h1>
 

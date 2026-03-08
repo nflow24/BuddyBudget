@@ -36,7 +36,7 @@ function Login() {
       <div className="phone-container">
         <div className="top-section" />
 
-        <div className="main-content login-content">
+        <div className="cc-card">
           <div
             className="logo-box logo-box--clickable"
             onClick={() => navigate("/")}

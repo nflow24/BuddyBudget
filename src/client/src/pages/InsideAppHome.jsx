@@ -45,11 +45,11 @@ function InsideAppHome() {
   const characterProps = getCharacterCanvasProps(user?.character);
 
   return (
-    <div className="app">
+    <div className="app inside-app-home-page">
       <div className="phone-container inside-app-shell">
         <div className="top-section"></div>
 
-        <div className="inside-app-content dashboard-content">
+        <div className="cc-card">
 
           <h1 className="dashboard-title">{user?.name ? `${user.name}'s buddy` : "buddy"}</h1>
 

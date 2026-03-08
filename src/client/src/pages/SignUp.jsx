@@ -37,7 +37,7 @@ function SignUp() {
       <div className="phone-container">
         <div className="top-section"></div>
 
-        <div className="main-content signup-content">
+        <div className="cc-card">
           <h1 className="signup-title">Create An Account</h1>
 
           {/* LOGIN LINK */}
