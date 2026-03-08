@@ -69,6 +69,39 @@ router.post('/exchange-token', auth, async (req, res) => {
     }
 });
 
+router.post('/refresh-transactions', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+        if (!user.plaidItems || user.plaidItems.length === 0) {
+            return res.status(400).json({ error: 'No linked accounts. Connect a bank first.' });
+        }
+
+        const results = { refreshed: 0, errors: [] };
+
+        for (const item of user.plaidItems) {
+            try {
+                await plaidClient.transactionsRefresh({
+                    access_token: item.accessToken,
+                });
+                results.refreshed += 1;
+            } catch (itemErr) {
+                const msg = itemErr.response?.data?.error_message || itemErr.message;
+                results.errors.push({ itemId: item.itemId || 'unknown', message: msg });
+                console.error('Transactions refresh error for item:', msg);
+            }
+        }
+
+        res.json({
+            success: results.errors.length === 0,
+            refreshed: results.refreshed,
+            errors: results.errors.length > 0 ? results.errors : undefined,
+        });
+    } catch (err) {
+        console.error('Plaid refresh error:', err.message);
+        res.status(500).json({ error: 'Failed to refresh transactions' });
+    }
+});
+
 router.get('/transactions', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user._id);
@@ -94,6 +127,13 @@ router.get('/transactions', auth, async (req, res) => {
                 const transactions = response.data.transactions || [];
 
                 for (const t of transactions) {
+                    const pfc = t.personal_finance_category || {};
+                    const personalFinanceCategory = {
+                        primary: pfc.primary || '',
+                        detailed: pfc.detailed || '',
+                        confidenceLevel: pfc.confidence_level || '',
+                    };
+
                     const existing = await Transaction.findOne({
                         plaidTransactionId: t.transaction_id,
                     });
@@ -106,6 +146,8 @@ router.get('/transactions', auth, async (req, res) => {
                             amount: t.amount,
                             date: new Date(t.date),
                             category: t.category || [],
+                            personalFinanceCategory,
+                            merchantName: t.merchant_name || '',
                             pending: t.pending || false,
                         });
                     }
@@ -114,8 +156,10 @@ router.get('/transactions', auth, async (req, res) => {
                         name: t.name,
                         amount: t.amount,
                         date: t.date,
-                        category: t.category,
-                        pending: t.pending,
+                        category: t.category || [],
+                        personalFinanceCategory,
+                        merchantName: t.merchant_name || '',
+                        pending: t.pending || false,
                     });
                 }
             } catch (itemErr) {
