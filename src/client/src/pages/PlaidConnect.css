@@ -1,0 +1,49 @@
+.plaid-top-section {
+  height: 110px;
+}
+
+.plaid-content {
+  padding-top: 10px;
+}
+
+.plaid-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.plaid-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 24px;
+}
+
+.plaid-loading {
+  color: #666;
+  margin: 16px 0;
+}
+
+.plaid-success {
+  color: #12c85a;
+  font-weight: 600;
+  margin: 16px 0;
+}
+
+.plaid-connect-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #12c85a;
+  color: black;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.plaid-connect-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

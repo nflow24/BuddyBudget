@@ -73,6 +73,7 @@ router.put('/me/character', auth, async (req, res) => {
         const { skin, hair, clothes, accessories } = req.body;
 
         const user = await User.findById(req.user._id);
+        if (!user.character) user.character = {};
         if (skin !== undefined) user.character.skin = skin;
         if (hair !== undefined) user.character.hair = hair;
         if (clothes !== undefined) user.character.clothes = clothes;
