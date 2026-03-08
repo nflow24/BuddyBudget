@@ -3,6 +3,40 @@
   overflow: hidden;
 }
 
+/* InsideAppHome: no scroll (horizontal or vertical) */
+.inside-app-home-page {
+  overflow: hidden;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.inside-app-home-page .phone-container {
+  overflow: hidden;
+  overflow-x: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.inside-app-home-page .top-section,
+.inside-app-home-page .bottom-nav {
+  flex-shrink: 0;
+}
+
+.inside-app-home-page .cc-card {
+  overflow: hidden;
+  overflow-x: hidden;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.inside-app-home-page .cc-card .dashboard-title,
+.inside-app-home-page .cc-card .dashboard-card {
+  flex-shrink: 0;
+}
+
 .inside-app-content {
   padding: 24px 24px 96px;
   height: calc(100% - 120px);

@@ -40,7 +40,7 @@ function Leaderboard() {
       <div className="phone-container inside-app-shell">
         <div className="top-section"></div>
 
-        <div className="inside-app-content dashboard-content">
+        <div className="cc-card">
           <h1 className="dashboard-title">Leaderboard</h1>
 
           {loading ? (
