@@ -1,0 +1,75 @@
+.inside-app-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.inside-app-content {
+  padding: 24px 24px 96px;
+  height: calc(100% - 120px);
+  overflow-y: auto;
+}
+
+/* Dashboard layout */
+
+.dashboard-content {
+  text-align: left;
+}
+
+.dashboard-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 18px;
+}
+
+/* Card UI */
+
+.dashboard-card {
+  background: white;
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+.dashboard-character-card {
+  text-align: center;
+}
+
+/* Text styles */
+
+.dashboard-stat-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: #111;
+  margin-top: 10px;
+}
+
+.dashboard-stat-line {
+  font-size: 14px;
+  color: #222;
+  margin: 6px 0;
+}
+
+.dashboard-muted {
+  font-size: 13px;
+  color: #666;
+  margin-top: 8px;
+}
+
+/* Progress bar */
+
+.dashboard-progress-bar {
+  width: 100%;
+  height: 16px;
+  background: #dfe7e3;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.dashboard-progress-fill {
+  height: 100%;
+  background: #4e8ea7;
+  border-radius: 999px;
+}
