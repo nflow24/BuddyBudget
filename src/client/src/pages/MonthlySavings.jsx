@@ -58,7 +58,7 @@ function MonthlySavings() {
       <div className="phone-container inside-app-shell">
         <div className="top-section" />
 
-        <div className="main-content login-content goals-content inside-app-content">
+        <div className="cc-card">
           <h1 className="login-title">Monthly Savings Plan</h1>
           <p className="login-subtitle">
             Your current budget and spending limits.

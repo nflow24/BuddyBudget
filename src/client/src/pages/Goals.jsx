@@ -67,7 +67,7 @@ function Goals() {
       <div className="phone-container">
         <div className="top-section" />
 
-        <div className="main-content login-content goals-content">
+        <div className="cc-card">
           <h1 className="login-title">Step 2: Set Your Monthly Goals</h1>
           <p className="login-subtitle">
             Enter your budget and spending limits below.

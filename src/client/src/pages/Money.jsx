@@ -138,7 +138,7 @@ function Money() {
   return (
     <div className="app">
       <div className="phone-container inside-app-shell">
-        <div className="cc-top-section"></div>
+        <div className="top-section"></div>
 
         <div className="cc-card">
           <div className="inside-app-content dashboard-content">

@@ -49,9 +49,12 @@ body {
 }
 
 .home-main-content {
-  margin-top: -50px;
+  margin-top: -20px;
   position: relative;
+  border-radius: 28px 28px 0 0;
+  background: white;
   z-index: 1;
+  overflow: hidden;
 }
 
 .money-overlay {
@@ -69,6 +72,7 @@ body {
 
 .main-content {
   padding: 20px 24px 32px;
+  border-radius: 28px 28px 0 0;
   text-align: center;
 }
 
