@@ -34,14 +34,17 @@ function Login() {
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="top-section login-top-section">
-          <button className="back-btn" onClick={() => navigate("/")}>
-            ×
-          </button>
-        </div>
+        <div className="top-section" />
 
         <div className="main-content login-content">
-          <div className="logo-box">
+          <div
+            className="logo-box logo-box--clickable"
+            onClick={() => navigate("/")}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && navigate("/")}
+            aria-label="Return to home"
+          >
             <img
               src={buddyLogo}
               alt="BuddyBudget Logo"

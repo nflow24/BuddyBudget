@@ -1,20 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { GOAL_CATEGORIES } from "../data/goalCategories";
 import "../App.css";
 import "./Goals.css";
 
-const CURRENCY_FIELDS = [
-  { id: "budget", label: "What is your budget for the month?", default: "500.00" },
-  { id: "save", label: "How much do you want to save?", default: "200.00" },
-  { id: "groceries", label: "How much do you want to spend on groceries?", default: "250.00" },
-  { id: "entertainment", label: "How much do you want to spend on entertainment?", default: "50.00" },
-];
-
 function Goals() {
   const navigate = useNavigate();
+  const { token } = useAuth();
   const [values, setValues] = useState(
-    Object.fromEntries(CURRENCY_FIELDS.map((f) => [f.id, f.default]))
+    Object.fromEntries(GOAL_CATEGORIES.map((f) => [f.id, f.default]))
   );
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (id, raw) => {
     const digits = raw.replace(/\D/g, "");
@@ -30,17 +28,54 @@ function Goals() {
     return "$" + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
+  const parseAmount = (v) => {
+    const n = parseFloat(String(v || "0").replace(/,/g, ""));
+    return Number.isNaN(n) ? 0 : n;
+  };
+
+  const handleNext = async () => {
+    setError(null);
+    setSaving(true);
+    try {
+      const goals = {};
+      for (const { id } of GOAL_CATEGORIES) {
+        goals[id] = parseAmount(values[id]);
+      }
+      const res = await fetch("/api/goals", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token && { Authorization: `Bearer ${token}` }),
+        },
+        body: JSON.stringify({ goals }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Failed to save goals");
+        setSaving(false);
+        return;
+      }
+      navigate("/connect-bank");
+    } catch (err) {
+      setError("Network error. Please try again.");
+      setSaving(false);
+    }
+  };
+
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="top-section login-top-section">
-        </div>
+        <div className="top-section" />
 
         <div className="main-content login-content goals-content">
           <h1 className="login-title">Step 2: Set Your Monthly Goals</h1>
-          <p className="login-subtitle">Enter your budget and spending limits below.</p>
+          <p className="login-subtitle">
+            Enter your budget and spending limits below.
+          </p>
 
-          {CURRENCY_FIELDS.map(({ id, label }) => (
+          {error && <p className="error-text">{error}</p>}
+
+          {GOAL_CATEGORIES.map(({ id, label }) => (
             <div key={id} className="form-group">
               <label className="goals-label" htmlFor={id}>
                 {label}
@@ -57,8 +92,26 @@ function Goals() {
             </div>
           ))}
 
-          <button type="button" className="login-btn goals-next-btn" onClick={() => navigate("/connect-bank")} aria-label="Next">
-            Next →
+          <div className="goals-total-area">
+            <span className="goals-total-label">Total Budget</span>
+            <span className="goals-total-value">
+              {formatDisplay(
+                GOAL_CATEGORIES.reduce(
+                  (sum, { id }) => sum + parseAmount(values[id]),
+                  0
+                )
+              )}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            className="login-btn goals-next-btn"
+            onClick={handleNext}
+            disabled={saving}
+            aria-label="Next"
+          >
+            {saving ? "Saving…" : "Next →"}
           </button>
         </div>
       </div>

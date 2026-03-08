@@ -79,7 +79,7 @@ function PlaidConnect() {
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="top-section plaid-top-section" />
+        <div className="top-section" />
 
         <div className="main-content plaid-content">
           <h1 className="plaid-title">Step 3: Connect to your bank</h1>

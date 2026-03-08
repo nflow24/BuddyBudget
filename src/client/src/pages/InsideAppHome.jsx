@@ -1,17 +1,43 @@
+import { useState, useEffect } from "react";
 import "../App.css";
 import "./AppPages.css";
 import BottomNav from "../BottomNav";
 import CharacterCanvas from "../components/CharacterCanvas";
-
-// character assets
-import LightSkin from "../assets/character/LightSkin.png";
-import Hair1 from "../assets/character/hair1.png";
-import Shirt2 from "../assets/character/money_shirt.png";
-import Pants1 from "../assets/character/jeans.png";
-import Shoe1 from "../assets/character/shoes.png";
+import { useAuth } from "../context/AuthContext";
+import { getCharacterCanvasProps } from "../data/characterOptions";
 
 function InsideAppHome() {
-  const spendingHealth = 72;
+  const { user, token } = useAuth();
+  const [spendingHealth, setSpendingHealth] = useState(null);
+
+  useEffect(() => {
+    if (!token) return;
+    async function syncThenFetchHealth() {
+      try {
+        await fetch("/api/plaid/sync-transactions", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } catch { /* ignore sync errors */ }
+      try {
+        const res = await fetch("/api/health", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (res.ok && typeof data.health === "number") {
+          setSpendingHealth(data.health);
+        } else {
+          setSpendingHealth(100);
+        }
+      } catch {
+        setSpendingHealth(100);
+      }
+    }
+    syncThenFetchHealth();
+  }, [token]);
+
+  const characterProps = getCharacterCanvasProps(user?.character);
+  const displayHealth = spendingHealth ?? 100;
 
   return (
     <div className="app">
@@ -24,33 +50,19 @@ function InsideAppHome() {
 
           <div className="dashboard-card dashboard-character-card">
 
-            <CharacterCanvas
-              skinToneSrc={LightSkin}
-              hairStyleSrc={Hair1}
-              hairTop={20}
-              hairWidth={115}
-              shirtSrc={Shirt2}
-              shirtTop={130}
-              shirtWidth={63}
-              pantsSrc={Pants1}
-              pantsTop={180}
-              pantsWidth={55}
-              shoeSrc={Shoe1}
-              shoeTop={260}
-              shoeWidth={66}
-            />
+            <CharacterCanvas {...characterProps} />
 
             <p className="dashboard-stat-title">Character Health</p>
 
             <div className="dashboard-progress-bar">
               <div
                 className="dashboard-progress-fill"
-                style={{ width: `${spendingHealth}%` }}
+                style={{ width: `${displayHealth}%` }}
               />
             </div>
 
             <p className="dashboard-muted">
-              {spendingHealth}% healthy spending this month
+              {displayHealth}% healthy spending this month
             </p>
 
           </div>

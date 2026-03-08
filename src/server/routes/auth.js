@@ -1,7 +1,10 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Goal = require('../models/Goal');
 const auth = require('../middleware/auth');
+const { getMonthlyActualsByCategoryAll } = require('../services/healthService');
+const { GOAL_CATEGORIES } = require('../config/categoryMap');
 
 const router = express.Router();
 
@@ -65,7 +68,33 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/me', auth, async (req, res) => {
-    res.json({ user: req.user.toPublicJSON() });
+    try {
+        const now = new Date();
+        const month = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+        const [goals, actualsByCategory] = await Promise.all([
+            Goal.find({ userId: req.user._id, month }).lean(),
+            getMonthlyActualsByCategoryAll(req.user._id, month),
+        ]);
+        const goalsByCategory = {};
+        for (const cat of GOAL_CATEGORIES) {
+            const g = goals.find((x) => x.category === cat);
+            goalsByCategory[cat] = g ? g.targetAmount : 0;
+        }
+        res.json({
+            user: req.user.toPublicJSON(),
+            actualsByCategory,
+            goalsByCategory,
+            month,
+        });
+    } catch (err) {
+        console.error('Me route error:', err.message);
+        res.json({
+            user: req.user.toPublicJSON(),
+            actualsByCategory: {},
+            goalsByCategory: {},
+            month: null,
+        });
+    }
 });
 
 router.put('/me/character', auth, async (req, res) => {

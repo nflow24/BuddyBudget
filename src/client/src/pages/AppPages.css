@@ -112,6 +112,32 @@
 .friends-label {
   display: block;
   font-size: 15px;
+/* Friends mock */
+.friends-content .friends-section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  margin: 20px 0 10px;
+}
+
+.friends-content .friends-section-title:first-child {
+  margin-top: 0;
+}
+
+.friends-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  font-size: 15px;
+  color: #111;
+}
+
+.friends-list li {
+  margin-bottom: 8px;
+}
+
+.friends-label {
+  font-size: 14px;
   color: #111;
   margin-bottom: 8px;
 }
@@ -188,3 +214,61 @@
   justify-content: center;
 }
 
+.friends-email-input {
+  margin-bottom: 12px;
+}
+
+.friends-invite-btn {
+  margin-top: 8px;
+}
+
+/* Leaderboard mock */
+.leaderboard-entry {
+  margin-bottom: 24px;
+}
+
+.leaderboard-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.leaderboard-rank {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+}
+
+.leaderboard-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+.leaderboard-trophies {
+  margin-left: auto;
+}
+
+.leaderboard-bar {
+  height: 12px;
+  background: #4e8ea7;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.leaderboard-bar-1 { width: 95%; }
+.leaderboard-bar-2 { width: 75%; }
+.leaderboard-bar-3 { width: 45%; }
+
+.leaderboard-stats {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+  font-size: 13px;
+  color: #333;
+}
+
+.leaderboard-stats li {
+  margin-bottom: 4px;
+}

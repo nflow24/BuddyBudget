@@ -31,6 +31,15 @@ const transactionSchema = new mongoose.Schema({
         type: [String],
         default: [],
     },
+    personalFinanceCategory: {
+        primary: { type: String, default: '' },
+        detailed: { type: String, default: '' },
+        confidenceLevel: { type: String, default: '' },
+    },
+    merchantName: {
+        type: String,
+        default: '',
+    },
     pending: {
         type: Boolean,
         default: false,
