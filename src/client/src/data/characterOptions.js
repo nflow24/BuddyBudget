@@ -35,8 +35,13 @@ export const skinToneOptions = [
 
 export const hairStyleOptions = [
   { value: 'hair1', asset: Hair1, label: 'Hair Style 1', top: 20, width: 115 },
+<<<<<<< HEAD
   { value: 'hair2', asset: Hair2, label: 'Hair Style 2', top: 0,  width: 105 },
   { value: 'hair3', asset: Hair3, label: 'Hair Style 3', top: 35, width: 120},
+=======
+  { value: 'hair2', asset: Hair2, label: 'Hair Style 2', top: 0, width: 105 },
+  { value: 'hair3', asset: Hair3, label: 'Hair Style 3', top: 30, width: 95 },
+>>>>>>> 6234b11 (Update character options)
   { value: 'hair4', asset: Hair4, label: 'Hair Style 4', top: 30, width: 100 },
   { value: 'hair5', asset: Hair5, label: 'Hair Style 5', top: 25, width: 95 },
   { value: 'hair6', asset: Hair6, label: 'Hair Style 6', top: 35, width: 85 },
