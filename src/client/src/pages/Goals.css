@@ -2,18 +2,48 @@
 
 .goals-content .form-group {
   text-align: left;
+  margin-bottom: 6px;
+}
+
+.goals-content .goals-currency-input {
+  margin-bottom: 0;
+  padding: 10px 14px;
 }
 
 .goals-label {
   display: block;
   font-size: 14px;
   color: #111;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   font-weight: 500;
 }
 
 .goals-currency-input {
   text-align: left;
+}
+
+.goals-total-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding: 10px 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.goals-total-label {
+  font-weight: 600;
+  font-size: 15px;
+  color: #333;
+}
+
+.goals-total-value {
+  font-weight: 700;
+  font-size: 18px;
+  color: #1a5f2a;
 }
 
 .goals-next-btn {
@@ -28,4 +58,9 @@
 .goals-content .login-title {
   font-size: 26px;
   text-align: left;
+  margin-bottom: 6px;
+}
+
+.goals-content .login-subtitle {
+  margin-bottom: 12px;
 }

@@ -16,7 +16,9 @@ const navItems = [
   return (
     <div className="bottom-nav">
       {navItems.map((item) => {
-        const isActive = location.pathname === item.path;
+        const isActive =
+          location.pathname === item.path ||
+          (item.path === "/me" && location.pathname === "/monthly-savings");
 
         return (
           <button

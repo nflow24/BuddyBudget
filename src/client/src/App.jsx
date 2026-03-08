@@ -23,6 +23,7 @@ function App() {
         <Route path="/home" element={<InsideAppHome />} />
         <Route path="/connect-bank" element={<PlaidConnect />} />
         <Route path="/monthly-savings" element={<MonthlySavings />} />
+        <Route path="/me" element={<MonthlySavings />} />
         <Route path="/debug/transactions" element={<TransactionsDebug />} />
       </Routes>
     </BrowserRouter>
