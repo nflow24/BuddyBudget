@@ -1,16 +1,39 @@
+import { useState, useEffect } from "react";
 import "../App.css";
 import "./AppPages.css";
 import BottomNav from "../BottomNav";
-import { useAppData } from "../context/AppDataContext";
+import { useAuth } from "../context/AuthContext";
 
 function Leaderboard() {
-  const { userData } = useAppData();
+  const { token } = useAuth();
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const rankedFriends = [...userData.friends].sort((a, b) => {
-    const scoreA = a.goalCompleted + a.moneySaved - a.overBudget;
-    const scoreB = b.goalCompleted + b.moneySaved - b.overBudget;
-    return scoreB - scoreA;
-  });
+  useEffect(() => {
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    async function fetchLeaderboard() {
+      try {
+        const res = await fetch("/api/leaderboard", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (res.ok) {
+          setLeaderboard(data.leaderboard || []);
+        } else {
+          setError(data.error || "Failed to load leaderboard");
+        }
+      } catch {
+        setError("Failed to load leaderboard");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchLeaderboard();
+  }, [token]);
 
   return (
     <div className="app">
@@ -20,40 +43,39 @@ function Leaderboard() {
         <div className="inside-app-content dashboard-content">
           <h1 className="dashboard-title">Leaderboard</h1>
 
-          {rankedFriends.map((friend, index) => {
-            const score = friend.goalCompleted + friend.moneySaved - friend.overBudget;
-
-            return (
-              <div className="leaderboard-card" key={friend.code}>
+          {loading ? (
+            <p className="friends-placeholder">Loading...</p>
+          ) : error ? (
+            <p className="friends-message friends-message-error">{error}</p>
+          ) : leaderboard.length === 0 ? (
+            <p className="friends-placeholder">
+              Add friends to see them on the leaderboard!
+            </p>
+          ) : (
+            leaderboard.map((entry, index) => (
+              <div className="leaderboard-card" key={entry.userId}>
                 <div className="leaderboard-row">
-                  <div>
+                  <div className="leaderboard-info">
                     <p className="leaderboard-rank">
-                      {index + 1}. {friend.name} {friend.isUser ? "(You)" : ""}
+                      {index + 1}. {entry.name} {entry.isUser ? "(You)" : ""}
                     </p>
-                    <p className="leaderboard-detail">
-                      Goal {friend.goalCompleted}% completed
-                    </p>
-                    <p className="leaderboard-detail">
-                      {friend.moneySaved}% of money saved
-                    </p>
-                    {friend.overBudget > 0 ? (
+                    <div className="leaderboard-progress-wrap">
+                      <div className="dashboard-progress-bar">
+                        <div
+                          className="dashboard-progress-fill"
+                          style={{ width: `${entry.health}%` }}
+                        />
+                      </div>
                       <p className="leaderboard-detail">
-                        {friend.overBudget}% over budget
+                        {entry.health}% healthy spending this month
                       </p>
-                    ) : (
-                      <p className="leaderboard-detail">
-                        On track with budget
-                      </p>
-                    )}
+                    </div>
                   </div>
-
-                  <div className="leaderboard-score-circle">
-                    {score}
-                  </div>
+                  <div className="leaderboard-score-circle">{entry.health}</div>
                 </div>
               </div>
-            );
-          })}
+            ))
+          )}
         </div>
 
         <BottomNav />
