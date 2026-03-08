@@ -46,11 +46,18 @@ function SignUp() {
             <span onClick={() => navigate("/login")}>Login</span>
           </p>
 
-          <div className="logo-box">
-            <img src={buddyLogo} className="logo-image signup-logo" />
+          <div
+            className="logo-box logo-box--clickable"
+            onClick={() => navigate("/")}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && navigate("/")}
+            aria-label="Return to home"
+          >
+            <img src={buddyLogo} alt="BuddyBudget Logo" className="logo-image signup-logo" />
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="signup-form">
             <input
               type="text"
               placeholder="Name"
@@ -92,7 +99,7 @@ function SignUp() {
               className="signup-btn"
               disabled={loading}
             >
-              {loading ? "..." : "→"}
+              {loading ? "Signing up..." : "Sign Up"}
             </button>
           </form>
         </div>
