@@ -6,7 +6,6 @@ BuddyBudget is a gamified budgeting platform designed for college students who w
 
 - **Raise your character** — Create a virtual character that grows and thrives as you make smart financial decisions
 - **Compete with friends** — Connect with your friend group and climb the leaderboard based on your budgeting performance
-- **Win real prizes** — Participate in sponsored challenges from partnering banking companies for a chance to earn cash rewards
 
 ## Tech Stack
 
