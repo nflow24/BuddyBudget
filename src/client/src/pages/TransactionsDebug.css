@@ -1,0 +1,120 @@
+.debug-content {
+  text-align: left;
+  color: #111;
+}
+
+.debug-content .login-title,
+.debug-content .login-subtitle,
+.debug-content .debug-loading,
+.debug-content .debug-empty,
+.debug-content .debug-table,
+.debug-content .signin-text {
+  color: #111;
+}
+
+.debug-content .debug-table th,
+.debug-content .debug-table td {
+  color: #111;
+}
+
+.debug-loading {
+  margin-top: 16px;
+  color: #111;
+}
+
+.debug-empty {
+  margin-top: 24px;
+  color: #111;
+}
+
+.debug-empty p {
+  margin-bottom: 8px;
+}
+
+.debug-link {
+  color: #12c85a;
+  font-weight: 700;
+}
+
+.debug-user {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #111;
+}
+
+.debug-user strong {
+  font-weight: 600;
+}
+
+.debug-auth-note {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #666;
+  font-style: italic;
+}
+
+.debug-refresh-row {
+  margin-top: 16px;
+}
+
+.debug-refresh-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #12c85a;
+  color: #111;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.debug-refresh-btn:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.debug-refresh-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.debug-refresh-msg {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #111;
+}
+
+.debug-table-wrapper {
+  margin-top: 20px;
+  overflow-x: auto;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.debug-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.debug-table th,
+.debug-table td {
+  padding: 8px 6px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.debug-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.debug-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.debug-amount {
+  white-space: nowrap;
+}

@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomizationReview from "./pages/CustomizationReview";
 import InsideAppHome from "./pages/InsideAppHome";
 import MonthlySavings from "./pages/MonthlySavings";
+import TransactionsDebug from "./pages/TransactionsDebug";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/home" element={<InsideAppHome />} />
         <Route path="/connect-bank" element={<PlaidConnect />} />
         <Route path="/monthly-savings" element={<MonthlySavings />} />
+        <Route path="/debug/transactions" element={<TransactionsDebug />} />
       </Routes>
     </BrowserRouter>
   );
