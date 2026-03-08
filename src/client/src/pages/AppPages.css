@@ -67,7 +67,7 @@
 
 .dashboard-progress-fill {
   height: 100%;
-  background: #4e8ea7;
+  background: #00b421;
   border-radius: 999px;
 }
 
@@ -187,3 +187,4 @@
   align-items: center;
   justify-content: center;
 }
+

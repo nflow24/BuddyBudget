@@ -48,13 +48,13 @@ function Friends() {
             </div>
 
             <h2 className="friends-subtitle">
-              Add Your Friend to
+              Add Your Friends to BuddyBudget and See Who Saves the Most!
               <br />
-              Compete
+           
             </h2>
 
             <label className="friends-label" htmlFor="friend-email">
-              Enter Their E-Mail:
+              Enter Their Name:
             </label>
 
             <input
