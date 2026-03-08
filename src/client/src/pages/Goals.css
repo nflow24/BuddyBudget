@@ -20,6 +20,11 @@
   margin-top: 8px;
 }
 
+.goals-loading {
+  margin-top: 16px;
+  color: #666;
+}
+
 .goals-content .login-title {
   font-size: 26px;
   text-align: left;
