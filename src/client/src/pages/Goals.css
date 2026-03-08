@@ -55,6 +55,18 @@
   color: #666;
 }
 
+.inside-app-shell .form-group {
+  margin-bottom: 4px;
+}
+
+.inside-app-shell .form-group .input-field {
+  margin-bottom: 6px;
+}
+
+.inside-app-shell .cc-card {
+  padding-bottom: 80px;
+}
+
 .goals-content .login-title {
   font-size: 26px;
   text-align: left;
