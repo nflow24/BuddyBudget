@@ -344,3 +344,10 @@ body {
   cursor: pointer;
   color: #12c85a;   
 }
+
+.error-text {
+  color: #dc2626;
+  font-size: 14px;
+  margin: 8px 0 12px;
+  text-align: center;
+}
