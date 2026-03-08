@@ -1,10 +1,30 @@
 /* Green top bar */
 .cc-top-section {
-  height: 110px;
+  height: 80px;
   background: #12c85a;
   padding: 20px;
   display: flex;
   align-items: flex-start;
+  position: relative;
+}
+
+/* Money image overlay on green (used on Home) */
+.money-box {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  z-index: 2;
+}
+
+.money-image {
+  width: min(70vw, 300px);
+  height: auto;
+  object-fit: contain;
 }
 
 .cc-username {
@@ -24,6 +44,8 @@
   padding: 28px 24px 32px;
   flex: 1;
   overflow-y: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .cc-title {
@@ -41,7 +63,7 @@
   border: none;
   border-radius: 12px;
   background: #12c85a;
-  color: black;
+  color: white;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -57,7 +79,7 @@
 
 .review-btn {
   background-color: #12c85a;
-  color: black;
+  color: white;
   border: none;
   padding: 17px 27px;
   font-size: 16px;
