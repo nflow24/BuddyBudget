@@ -1,13 +1,3 @@
-/* Green top bar */
-.cc-top-section {
-  height: 80px;
-  background: #12c85a;
-  padding: 20px;
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-}
-
 /* Money image overlay on green (used on Home) */
 .money-box {
   position: absolute;
