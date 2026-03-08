@@ -57,7 +57,7 @@ function Goals() {
             </div>
           ))}
 
-          <button type="button" className="login-btn goals-next-btn" onClick={() => navigate("/monthly-savings")} aria-label="Next">
+          <button type="button" className="login-btn goals-next-btn" onClick={() => navigate("/connect-bank")} aria-label="Next">
             Next →
           </button>
         </div>

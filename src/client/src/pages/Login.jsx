@@ -18,10 +18,11 @@ function Login() {
       return;
     }
     setLoading(true);
-    const success = await login(email.trim(), password);
+    const result = await login(email.trim(), password);
     setLoading(false);
-    if (success) {
-      navigate("/customize");
+    if (result) {
+      const hasCompletedOnboarding = result.character?.skin && result.hasConnectedBank;
+      navigate(hasCompletedOnboarding ? "/home" : "/customize");
     }
   };
 
