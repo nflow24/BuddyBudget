@@ -5,7 +5,7 @@ import BottomNav from "../BottomNav";
 
 function Friends() {
   const [email, setEmail] = useState("");
-  const [friends, setFriends] = useState(["Sam (you)"]);
+  const [friends, setFriends] = useState([]);
   const [message, setMessage] = useState("");
 
   const handleInvite = () => {
@@ -40,27 +40,26 @@ function Friends() {
             <h1 className="friends-title">Your Friends:</h1>
 
             <div className="friends-list">
-              {friends.map((friend, index) => (
-                <p key={friend} className="friends-list-item">
-                  {index + 1}. {friend}
-                </p>
-              ))}
+              {friends.length === 0 ? (
+                <p className="friends-placeholder">Make your first friend!</p>
+              ) : (
+                friends.map((friend, index) => (
+                  <p key={friend} className="friends-list-item">
+                    {index + 1}. {friend}
+                  </p>
+                ))
+              )}
             </div>
 
             <h2 className="friends-subtitle">
               Add Your Friends to BuddyBudget and See Who Saves the Most!
-              <br />
-           
             </h2>
-
-            <label className="friends-label" htmlFor="friend-email">
-              Enter Their Name:
-            </label>
 
             <input
               id="friend-email"
               type="email"
-              className="friends-input"
+              placeholder="Enter their name"
+              className="input-field"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
