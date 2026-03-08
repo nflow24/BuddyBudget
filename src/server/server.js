@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
+const plaidRoutes = require('./routes/plaid');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,6 +17,7 @@ app.get('/api/test', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/plaid', plaidRoutes);
 
 connectDB().then(() => {
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
