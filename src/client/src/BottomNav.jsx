@@ -1,11 +1,11 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import "./BottomNav.css";
 
-import leaderboardIcon from "./assets/nav/leaderboard.png";
-import moneyIcon from "./assets/nav/money.png";
-import homeIcon from "./assets/nav/home.png";
-import friendsIcon from "./assets/nav/friend.png";
-import profileIcon from "./assets/nav/icon.png";
+import leaderboardIcon from "./assets/nav/leaderboard.svg";
+import moneyIcon from "./assets/nav/money.svg";
+import homeIcon from "./assets/nav/home.svg";
+import friendsIcon from "./assets/nav/friend.svg";
+import profileIcon from "./assets/nav/icon.svg";
 
 function BottomNav() {
   const navigate = useNavigate();

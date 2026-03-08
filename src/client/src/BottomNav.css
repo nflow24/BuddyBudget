@@ -48,10 +48,9 @@
 }
 
 .nav-icon-image {
-  width: 120px;
-  height: 120px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
-  transform: scale(1.25);
 }
 
 .nav-btn:focus {
