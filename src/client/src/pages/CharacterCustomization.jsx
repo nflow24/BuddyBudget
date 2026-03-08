@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CharacterCanvas from '../components/CharacterCanvas';
 import Selector from '../components/Selector';
 import './CharacterCustomization.css';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // Import Assets
 
@@ -69,7 +70,13 @@ const shoeOption = [
   { value: 'shoes', previewImg: Shoe1, asset: Shoe1, label: 'Shoes', top: 260, width: 66 },
 ];
 
+
 const CharacterCustomization = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const savedCharacter = location.state;
+
   const [skinTone, setSkinTone] = useState(skinToneOptions[0]);
   const [hairStyle, setHairStyle] = useState(hairStyleOptions[0]);
   const [shirtStyle, setShirtStyle] = useState(shirtOptions[0]);
@@ -100,6 +107,18 @@ const CharacterCustomization = () => {
     const selected = shoeOption.find(opt => opt.value === value);
     if (selected) setShoeStyle(selected);
   };
+
+const handleFinishCustomization = () => {
+  navigate('/customize/review', {
+    state: {
+      skinTone,
+      hairStyle,
+      shirtStyle,
+      pantsStyle,
+      shoeStyle,
+    },
+  });
+};
 
   return (
     <div className="app">
@@ -171,6 +190,13 @@ const CharacterCustomization = () => {
             selectedValue={shoeStyle.value}
             onSelect={handleShoeSelect}
           />
+
+          <button
+            className="finish-customization-btn"
+            onClick={handleFinishCustomization}
+          >
+            Finish Customization →
+          </button>
 
         </div>
       </div>

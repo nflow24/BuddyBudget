@@ -37,7 +37,7 @@ function Goals() {
         </div>
 
         <div className="main-content login-content goals-content">
-          <h1 className="login-title">Step 2: Set your monthly goals</h1>
+          <h1 className="login-title">Step 2: Set Your Monthly Goals</h1>
           <p className="login-subtitle">Enter your budget and spending limits below.</p>
 
           {CURRENCY_FIELDS.map(({ id, label }) => (
