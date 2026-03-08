@@ -11,28 +11,6 @@ import MonthlySavings from "./pages/MonthlySavings";
 import Money from "./pages/Money";
 import Friends from "./pages/Friends";
 import Leaderboard from "./pages/Leaderboard";
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/customize" element={<CharacterCustomization />} />
-        <Route path="/goals" element={<Goals />} />
-        <Route path="/customize/review" element={<CustomizationReview />} />
-        <Route path="/home" element={<InsideAppHome />} />
-        <Route path="/connect-bank" element={<PlaidConnect />} />
-        <Route path="/monthly-savings" element={<MonthlySavings />} />
-        <Route path="/money" element={<Money />} />
-        <Route path="/friends" element={<Friends />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-      </Routes>
-    </BrowserRouter>
-import PieChart from "./pages/PieChart";
-import Friends from "./pages/Friends";
-import Leaderboard from "./pages/Leaderboard";
 import TransactionsDebug from "./pages/TransactionsDebug";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -48,7 +26,7 @@ function App() {
           <Route path="/goals" element={<Goals />} />
           <Route path="/customize/review" element={<CustomizationReview />} />
           <Route path="/home" element={<InsideAppHome />} />
-          <Route path="/money" element={<PieChart />} />
+          <Route path="/money" element={<Money />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/connect-bank" element={<PlaidConnect />} />
