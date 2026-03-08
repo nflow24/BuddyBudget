@@ -1,4 +1,5 @@
 import "../App.css";
+import "./CharacterCustomization.css";
 import "./Goals.css";
 
 const CURRENCY_FIELDS = [

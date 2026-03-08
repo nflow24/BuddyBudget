@@ -1,5 +1,7 @@
 import "../App.css";
+import "./CharacterCustomization.css";
 import buddyLogo from "../assets/logo.png";
+import moneyLogo from "../assets/money.png";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -8,14 +10,13 @@ function Home() {
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="top-section">
-          <div className="money money-1">$</div>
-          <div className="money money-2">$</div>
-          <div className="money money-3">$</div>
-          <div className="money money-4">$</div>
+        <div className="cc-top-section">
+          <div className="money-box">
+            <img src={moneyLogo} alt="" className="money-image" />
+          </div>
         </div>
-
-        <div className="main-content">
+        <div className="cc-card">
+          <div className="main-content">
           <h2 className="welcome-text">Welcome to</h2>
 
           <div className="logo-box">
@@ -39,6 +40,7 @@ function Home() {
             Have an account?{" "}
             <span onClick={() => navigate("/login")}>Sign In</span>
           </p>
+          </div>
         </div>
       </div>
     </div>

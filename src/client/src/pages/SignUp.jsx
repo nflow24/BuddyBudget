@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../App.css";
+import "./CharacterCustomization.css";
 import buddyLogo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -35,9 +36,10 @@ function SignUp() {
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="top-section"></div>
+        <div className="cc-top-section"></div>
 
-        <div className="main-content signup-content">
+        <div className="cc-card">
+          <div className="main-content signup-content">
           <h1 className="signup-title">Create An Account</h1>
 
           {/* LOGIN LINK */}
@@ -95,6 +97,7 @@ function SignUp() {
               {loading ? "..." : "→"}
             </button>
           </form>
+          </div>
         </div>
       </div>
     </div>

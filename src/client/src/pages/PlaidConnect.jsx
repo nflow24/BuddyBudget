@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { usePlaidLink } from "react-plaid-link";
 import { useAuth } from "../context/AuthContext";
 import "../App.css";
+import "./CharacterCustomization.css";
 import "./PlaidConnect.css";
 
 function PlaidConnect() {
@@ -79,9 +80,10 @@ function PlaidConnect() {
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="top-section plaid-top-section" />
+        <div className="cc-top-section" />
 
-        <div className="main-content plaid-content">
+        <div className="cc-card">
+          <div className="main-content plaid-content">
           <h1 className="plaid-title">Step 3: Connect to your bank</h1>
           <p className="plaid-subtitle">
             Securely link your bank account to track spending and reach your goals.
@@ -104,6 +106,7 @@ function PlaidConnect() {
               Connect Your Bank
             </button>
           )}
+          </div>
         </div>
       </div>
     </div>

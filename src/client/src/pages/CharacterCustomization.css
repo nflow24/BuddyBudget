@@ -5,6 +5,26 @@
   padding: 20px;
   display: flex;
   align-items: flex-start;
+  position: relative;
+}
+
+/* Money image overlay on green (used on Home) */
+.money-box {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  z-index: 2;
+}
+
+.money-image {
+  width: min(70vw, 300px);
+  height: auto;
+  object-fit: contain;
 }
 
 .cc-username {
@@ -24,6 +44,8 @@
   padding: 28px 24px 32px;
   flex: 1;
   overflow-y: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .cc-title {

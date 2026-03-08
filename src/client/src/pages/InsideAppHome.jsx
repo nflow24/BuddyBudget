@@ -1,4 +1,5 @@
 import "../App.css";
+import "./CharacterCustomization.css";
 import "./AppPages.css";
 import BottomNav from "../BottomNav";
 import CharacterCanvas from "../components/CharacterCanvas";
@@ -13,9 +14,10 @@ function InsideAppHome() {
   return (
     <div className="app">
       <div className="phone-container inside-app-shell">
-        <div className="top-section"></div>
+        <div className="cc-top-section"></div>
 
-        <div className="inside-app-content dashboard-content">
+        <div className="cc-card">
+          <div className="inside-app-content dashboard-content">
 
           <h1 className="dashboard-title">Home</h1>
 
@@ -38,6 +40,7 @@ function InsideAppHome() {
 
           </div>
 
+          </div>
         </div>
 
         <BottomNav />

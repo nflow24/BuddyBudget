@@ -36,42 +36,6 @@ body {
   position: relative;
 }
 
-
-.money {
-  position: absolute;
-  width: 55px;
-  height: 28px;
-  background: #22d96d;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  color: #0a602c;
-  transform: rotate(-25deg);
-}
-
-.money-1 {
-  top: 50px;
-  left: 92px;
-}
-
-.money-2 {
-  top: 168px;
-  right: 50px;
-}
-
-.money-3 {
-  top: 160px;
-  left: 28px;
-}
-
-.money-4 {
-  top: 90px;
-  right: 50px;
-}
-
-
 .main-content {
   padding: 20px 24px 32px;
   text-align: center;

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../App.css";
+import "./CharacterCustomization.css";
 import buddyLogo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";

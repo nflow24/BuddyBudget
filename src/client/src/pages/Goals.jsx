@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import "./CharacterCustomization.css";
 import "./Goals.css";
 
 const CURRENCY_FIELDS = [
@@ -33,10 +34,10 @@ function Goals() {
   return (
     <div className="app">
       <div className="phone-container">
-        <div className="top-section login-top-section">
-        </div>
+        <div className="cc-top-section"></div>
 
-        <div className="main-content login-content goals-content">
+        <div className="cc-card">
+          <div className="main-content login-content goals-content">
           <h1 className="login-title">Step 2: Set Your Monthly Goals</h1>
           <p className="login-subtitle">Enter your budget and spending limits below.</p>
 
@@ -60,6 +61,7 @@ function Goals() {
           <button type="button" className="login-btn goals-next-btn" onClick={() => navigate("/connect-bank")} aria-label="Next">
             Next →
           </button>
+          </div>
         </div>
       </div>
     </div>
